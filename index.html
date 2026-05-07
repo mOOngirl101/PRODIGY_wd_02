@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baby Blue Stopwatch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="stopwatch-style.css"/>
+</head>
+<body>
+
+  <div class="sw-wrap">
+    <div class="sw-orb sw-orb-1"></div>
+    <div class="sw-orb sw-orb-2"></div>
+
+    <p class="sw-title">Stopwatch</p>
+
+    <!-- Ring + Clock Face -->
+    <div class="sw-ring-wrap">
+      <div class="sw-ring">
+        <svg viewBox="0 0 220 220" aria-hidden="true">
+          <circle class="sw-ring-track" cx="110" cy="110" r="100"/>
+          <circle class="sw-ring-fill" id="swRingFill" cx="110" cy="110" r="100"/>
+        </svg>
+        <div class="sw-face">
+          <div class="sw-time" id="swTime">00:00</div>
+          <div class="sw-ms"   id="swMs">.00</div>
+          <div class="sw-status" id="swStatus">ready</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="sw-btns">
+      <button class="sw-btn sw-btn-start" id="swStartBtn" aria-label="Start stopwatch">
+        ▶ Start
+      </button>
+      <button class="sw-btn sw-btn-lap"   id="swLapBtn"   disabled aria-label="Record lap">
+        ⚑ Lap
+      </button>
+      <button class="sw-btn sw-btn-reset" id="swResetBtn" disabled aria-label="Reset stopwatch">
+        ↺
+      </button>
+    </div>
+
+    <!-- Lap List -->
+    <div id="swLapsSection" style="display:none">
+      <p class="sw-laps-label">Laps</p>
+      <div class="sw-laps" id="swLaps" role="list" aria-label="Lap times"></div>
+    </div>
+    <div class="sw-empty" id="swEmpty">Press start to begin timing</div>
+  </div>
+
+  <script src="stopwatch-script.js"></script>
+</body>
+</html>

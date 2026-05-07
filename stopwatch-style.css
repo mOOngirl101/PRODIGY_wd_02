@@ -1,0 +1,260 @@
+/* ══════════════════════════════════════════════════
+   BABY BLUE STOPWATCH — stopwatch-style.css
+   ══════════════════════════════════════════════════ */
+
+/* ─── Reset & Base ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c5e8f5;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* ─── Wrapper Card ─────────────────────────────── */
+.sw-wrap {
+  background: linear-gradient(160deg, #dff1fb 0%, #b8dff5 40%, #ceeaf8 100%);
+  border-radius: 28px;
+  padding: 2.5rem 2rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(26, 130, 184, 0.18);
+}
+
+/* ─── Decorative Orbs ──────────────────────────── */
+.sw-orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.sw-orb-1 { width: 260px; height: 260px; background: #7ec8e3; top: -80px; right: -60px; }
+.sw-orb-2 { width: 180px; height: 180px; background: #a8d8ea; bottom: -40px; left: -50px; }
+
+/* ─── Title ────────────────────────────────────── */
+.sw-title {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #4a90b8;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Ring ─────────────────────────────────────── */
+.sw-ring-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+}
+
+.sw-ring {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.sw-ring svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  transform: rotate(-90deg);
+}
+
+.sw-ring-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 8;
+}
+
+.sw-ring-fill {
+  fill: none;
+  stroke: #4aa8d8;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 628;
+  stroke-dashoffset: 628;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+/* ─── Clock Face ───────────────────────────────── */
+.sw-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.sw-time {
+  font-family: 'Space Mono', monospace;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #1b4f72;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.sw-ms {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #4a90b8;
+  letter-spacing: 0.04em;
+}
+
+.sw-status {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7ab8d4;
+  margin-top: 4px;
+}
+
+/* ─── Buttons ──────────────────────────────────── */
+.sw-btns {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.sw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.65rem 1.5rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.sw-btn:active { transform: scale(0.95); }
+
+.sw-btn-start {
+  background: #1a82b8;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(26, 130, 184, 0.35);
+  min-width: 110px;
+}
+.sw-btn-start:hover { background: #1675a8; box-shadow: 0 8px 24px rgba(26, 130, 184, 0.45); }
+
+.sw-btn-pause {
+  background: #f0a500;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(240, 165, 0, 0.3);
+  min-width: 110px;
+}
+.sw-btn-pause:hover { background: #d99400; }
+
+.sw-btn-lap {
+  background: rgba(255, 255, 255, 0.7);
+  color: #1b4f72;
+  box-shadow: 0 4px 14px rgba(74, 144, 184, 0.15);
+}
+.sw-btn-lap:hover { background: rgba(255, 255, 255, 0.9); }
+
+.sw-btn-reset {
+  background: rgba(255, 255, 255, 0.7);
+  color: #c0392b;
+  box-shadow: 0 4px 14px rgba(192, 57, 43, 0.1);
+  font-size: 1.1rem;
+}
+.sw-btn-reset:hover { background: rgba(255, 255, 255, 0.9); }
+
+.sw-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+
+/* ─── Lap List ─────────────────────────────────── */
+.sw-laps-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4a90b8;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.sw-laps {
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 2px;
+}
+
+.sw-laps::-webkit-scrollbar { width: 4px; }
+.sw-laps::-webkit-scrollbar-track { background: transparent; }
+.sw-laps::-webkit-scrollbar-thumb { background: #b0d4e8; border-radius: 99px; }
+
+.sw-lap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  animation: lap-in 0.25s ease;
+}
+
+@keyframes lap-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sw-lap-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: #7ab8d4;
+  letter-spacing: 0.08em;
+  min-width: 52px;
+}
+
+.sw-lap-split {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  color: #7ab8d4;
+}
+
+.sw-lap-total {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1b4f72;
+}
+
+/* Best / worst lap highlights */
+.sw-lap.sw-lap-best  { background: rgba(180, 230, 200, 0.55); }
+.sw-lap.sw-lap-worst { background: rgba(255, 210, 210, 0.5);  }
+
+/* ─── Empty State ──────────────────────────────── */
+.sw-empty {
+  text-align: center;
+  font-size: 13px;
+  color: #7ab8d4;
+  padding: 0.75rem 0;
+}
+
+/* ─── Responsive ───────────────────────────────── */
+@media (max-width: 460px) {
+  .sw-wrap { padding: 2rem 1.25rem 1.5rem; border-radius: 20px; }
+  .sw-time { font-size: 2.2rem; }
+  .sw-ring { width: 190px; height: 190px; }
+}
