@@ -1,4 +1,4 @@
-# ⏱ Elegant Stopwatch
+# ⏱ SplitSync Stopwatch
 
 A clean, elegant stopwatch web application built with **pure HTML, CSS, and JavaScript** — zero dependencies, zero frameworks. Featuring a soft baby blue palette, an animated SVG ring, centisecond precision, full lap tracking with best/worst split highlights, and keyboard shortcuts.
 
